@@ -25,6 +25,6 @@ public class RoleConverter implements AttributeConverter<Authority, String> {
         return Stream.of(Authority.values())
                 .filter(authority -> authority.getValue().equals(code))
                 .findFirst()
-                .orElseThrow(IllegalAccessError::new);
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

@@ -1,10 +1,15 @@
 package com.zers.filehub.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,10 +18,9 @@ import org.hibernate.annotations.OnDeleteAction;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "credentials")
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class CredentialEntity extends Audittable {
-    private String password;
+@Table(name = "confirmations")
+public class ConfirmationEntity extends Audittable {
+    private String key;
     @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -24,4 +28,9 @@ public class CredentialEntity extends Audittable {
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("user_id")
     private UserEntity userEntity;
+
+    public ConfirmationEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
+        this.key = UUID.randomUUID().toString();
+    }
 }

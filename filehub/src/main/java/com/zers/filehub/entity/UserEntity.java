@@ -2,10 +2,7 @@ package com.zers.filehub.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -39,6 +36,11 @@ public class UserEntity extends Audittable{
     private String qrCodeSecret;
     @Column(columnDefinition = "TEXT")
     private String qrCodeImageUri;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
     private RoleEntity role;
 }

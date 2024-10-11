@@ -1,4 +1,4 @@
-package com.zers.filehub;
+package com.zers.filehub.event;
 
 import com.zers.filehub.entity.UserEntity;
 import com.zers.filehub.enumiration.EventType;

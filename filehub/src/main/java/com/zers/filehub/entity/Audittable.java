@@ -1,6 +1,8 @@
 package com.zers.filehub.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.zers.filehub.domain.RequestContext;
+import com.zers.filehub.exception.ApiException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -16,7 +18,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createAt", "updateAt"}, allowGetters = true)
-public abstract class Auditable {
+public abstract class Audittable {
     @Id
     @SequenceGenerator(name = "primary_key_seq", sequenceName = "primary_key_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "primary_key_seq")
@@ -37,7 +39,7 @@ public abstract class Auditable {
 
     @PrePersist
     public void beforePersist() {
-        var userId = 1L;
+        var userId = RequestContext.getUserId();
         if (userId == null) {
             throw new ApiException("Cannot persist entity without user ID in Request Context for this thread");
         }
@@ -49,7 +51,7 @@ public abstract class Auditable {
 
     @PreUpdate
     public void beforeUpdate() {
-        var userId = 1L;
+        var userId = RequestContext.getUserId();
         if (userId == null) {
             throw new ApiException("Cannot update entity without user ID in Request Context for this thread");
         }

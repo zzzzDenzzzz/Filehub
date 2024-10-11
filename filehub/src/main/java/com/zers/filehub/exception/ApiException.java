@@ -1,4 +1,4 @@
-package com.zers.filehub.entity.exception;
+package com.zers.filehub.exception;
 
 public class ApiException extends RuntimeException {
     public ApiException(String message) {

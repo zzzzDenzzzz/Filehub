@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -38,5 +39,6 @@ public class UserEntity extends Audittable{
     private String qrCodeSecret;
     @Column(columnDefinition = "TEXT")
     private String qrCodeImageUri;
-    private String roles;//TODO create Role class and map here with JPA
+    @ManyToOne
+    private RoleEntity role;
 }

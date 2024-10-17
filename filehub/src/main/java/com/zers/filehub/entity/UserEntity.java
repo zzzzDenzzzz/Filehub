@@ -34,7 +34,7 @@ public class UserEntity extends Audittable{
     private boolean mfa;
     @JsonIgnore
     private String qrCodeSecret;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String qrCodeImageUri;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(

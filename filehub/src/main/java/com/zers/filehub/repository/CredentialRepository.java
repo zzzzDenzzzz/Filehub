@@ -1,7 +1,12 @@
 package com.zers.filehub.repository;
 
+import com.zers.filehub.entity.CredentialEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface CredentialRepository {
+public interface CredentialRepository extends JpaRepository<CredentialEntity, Long> {
+    Optional<CredentialEntity> getCredentialByUserEntityId(Long userId);
 }

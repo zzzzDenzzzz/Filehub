@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserRequst {
+public class UserRequest {
     @NotEmpty(message = "First name cannot be empty or null")
     private String firstName;
     @NotEmpty(message = "Last name cannot be empty or null")

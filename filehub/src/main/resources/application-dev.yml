@@ -12,6 +12,6 @@ ACTIVE_PROFILE: dev
 #Email Config
 EMAIL_HOST: smtp.gmail.com
 EMAIL_PORT: 587
-EMAIL_ID: zzz12den24@gmail.com
-EMAIL_PASSWORD: rfv467(89m)gh
+EMAIL_ID: hixoti3916@adosnan.com
+EMAIL_PASSWORD: hixoti3916@adosnan.com
 VERIFY_EMAIL_HOST: http://localhost:8085
